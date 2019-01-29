@@ -3,14 +3,14 @@ const webpack = require('webpack')
 
 module.exports = {
     entry: './src/index.js',
-    mode: "development",
-    modules: {
+    mode: "production",
+    module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: babel-loader,
-                options: {presets: ["@babel/env"]}
+                loader: 'babel-loader',
+                options: { presets: ["@babel/env", "@babel/react"]}
             },
             {
                 test: /\.css$/,
