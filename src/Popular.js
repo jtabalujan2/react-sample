@@ -1,19 +1,22 @@
 import React, {Component} from "react"
 import PropTypes from 'prop-types'
+import Methods from './util/api'
 
 function SelectedLang(props) {
 
-    const langauges = ['All','Java','Javascript','Ruby','Python']
+    const tabs = ['All','Java','Javascript','Ruby','Python']
 
     return(
         <ul className="languages">
-            { langauges.map((lang) => {
+            { tabs.map((selected) => {
                 return (
                 <li 
-                    style = {lang === props.languageState ? {color: '#d0021b'}: null}
-                    onClick={props.onSelect.bind(null, lang)} 
-                    key={lang}>
-                    {lang}
+                    //turns selected item red
+                    style = {selected === props.currentState ? {color: '#d0021b'}: null}
+                    //invokes updateTab function to update state
+                    onClick={props.onSelect.bind(null, selected)} 
+                    key={selected}>
+                    {selected}
                 </li>
                 )
                 })}
@@ -21,12 +24,23 @@ function SelectedLang(props) {
     )
 }
 
-SelectedLang.propTypes = {
-    languageState: PropTypes.string.isRequired,
-    onSelect: PropTypes.func.isRequired
+function RepoGrid(props) {
+   return(
+      <ul className="repo-grid">
+        {props.repos.map((repo) =>
+            {
+               return(
+               <p>{repo.name}</p>
+               )
+            })}
+    </ul>
+   )
 }
 
-
+SelectedLang.propTypes = {
+    currentState: PropTypes.string.isRequired,
+    onSelect: PropTypes.func.isRequired
+}
 
 class Popular extends Component {
         
@@ -34,26 +48,49 @@ class Popular extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedTab: 'All'
+            selectedTab: 'All',
+            repos: null
         }
 
         this.updateTab = this.updateTab.bind(this)
     }
 
-   updateTab(lang) {
+   updateTab(choice) {
     this.setState(() => { 
         return { 
-            selectedTab: lang
+            selectedTab: choice,
+            repos: null
         }
     })
+        
+    Methods.fetchPopularRepos(choice)
+    .then((response) => {
+        this.setState(() => {
+            return {
+                repos: response
+            }
+        })
+    })
+
    }
+
+   componentDidMount() {    
+       this.updateTab(this.state.selectedTab)
+   }
+
     render() {
         
         return (
-            <SelectedLang 
-                languageState = {this.state.selectedTab}
-                onSelect = {this.updateTab}
-            />
+            <React.Fragment>
+                <SelectedLang 
+                    //references constructor that sets state object
+                    currentState = {this.state.selectedTab}
+                    //references updateTab function to be invoked by bind
+                    onSelect = {this.updateTab}
+                />
+                {!this.state.repos ? <p>Loading...</p> : <RepoGrid repos={this.state.repos}/>}
+                
+            </React.Fragment>
         )
     }
 }
