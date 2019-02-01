@@ -1,4 +1,5 @@
 {
+  "homepage": "http://gitname.github.io/react-sample",
   "name": "react-sample",
   "version": "1.0.0",
   "description": "",
@@ -16,6 +17,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.2",
     "css-loader": "^1.0.0",
+    "gh-pages": "^2.0.1",
     "prop-types": "^15.6.2",
     "react-hot-loader": "^4.6.3",
     "style-loader": "^0.23.0",
@@ -25,7 +27,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "muslimah": "webpack-dev-server --mode production"
+    "muslimah": "webpack-dev-server --mode production",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -35,6 +38,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jtabalujan2/react-sample/issues"
-  },
-  "homepage": "https://github.com/jtabalujan2/react-sample#readme"
+  }
 }
