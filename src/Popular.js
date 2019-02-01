@@ -7,30 +7,47 @@ function SelectedLang(props) {
     const tabs = ['All','Java','Javascript','Ruby','Python']
 
     return(
-        <ul className="languages">
+      <div>
+         <img id="logo" src="https://i2.wp.com/www.globalemancipation.ngo/wp-content/uploads/2017/09/github-logo.png?ssl=1"/>
+         <ul className="languages">
             { tabs.map((selected) => {
-                return (
-                <li 
-                    //turns selected item red
-                    style = {selected === props.currentState ? {color: '#d0021b'}: null}
-                    //invokes updateTab function to update state
-                    onClick={props.onSelect.bind(null, selected)} 
-                    key={selected}>
-                    {selected}
-                </li>
-                )
-                })}
-        </ul>
-    )
+                  return (
+                  <li 
+                     //turns selected item red
+                     style = {selected === props.currentState ? {color: '#778899'}: null}
+                     //invokes updateTab function to update state
+                     onClick={props.onSelect.bind(null, selected)} 
+                     key={selected}>
+                     {selected}
+                  </li>
+                  )
+                  })}
+         </ul>
+      </div>
+   )
 }
 
 function RepoGrid(props) {
    return(
       <ul className="repo-grid">
-        {props.repos.map((repo) =>
+        {props.repos.map((repo, index) =>
             {
                return(
-               <p>{repo.name}</p>
+
+               <li key={repo.name} className="container slide-top">
+                  <div className="header-bar">
+                     <div className="rank-number">#{index + 1}</div>
+                     <a className="repo-name" href={repo.html_url}>{repo.name}</a>
+                  </div>
+               
+                  <ul className="space-list-items">
+                     <li>
+                        <img className="avatar" src={repo.owner.avatar_url} alt={"Avatar for:" + repo.name}/>
+                        <p><strong>Owner: </strong>{repo.owner.login}</p>
+                        <p><strong>Stars: </strong> {repo.stargazers_count}</p>
+                     </li>
+                  </ul>
+               </li>
                )
             })}
     </ul>
@@ -88,8 +105,9 @@ class Popular extends Component {
                     //references updateTab function to be invoked by bind
                     onSelect = {this.updateTab}
                 />
-                {!this.state.repos ? <p>Loading...</p> : <RepoGrid repos={this.state.repos}/>}
+                {!this.state.repos ? <p className="languages centered">Loading...</p> : <RepoGrid repos={this.state.repos}/>}
                 
+
             </React.Fragment>
         )
     }
