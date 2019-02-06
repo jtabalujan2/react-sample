@@ -5,7 +5,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, "dist/"),
-        publicPath: "/dist/",
+        publicPath: "/",
         filename: "bundle.js"
     },
     module: {
@@ -24,10 +24,11 @@ module.exports = {
     mode: "production",
     resolve: {extensions: ["*",".js",".jsx"]},
     devServer: {
-        contentBase: path.join(__dirname, "public/"),
+        contentBase: path.join(__dirname, "build/"),
         port: 3000,
-        publicPath: "http://localhost:3000/dist/",
-        hotOnly: true
+        publicPath: "localhost:3000/dist/",
+        hotOnly: true,
+        historyApiFallback: true
     },
     performance: {
         hints: process.env.NODE_ENV === 'production' ? "warning" : false

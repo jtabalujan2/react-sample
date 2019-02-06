@@ -1,5 +1,5 @@
 {
-  "homepage": "http://gitname.github.io/react-sample",
+  "homepage": "http://jtabalujan2.github.io/react-sample",
   "name": "react-sample",
   "version": "1.0.0",
   "description": "",
@@ -20,6 +20,7 @@
     "gh-pages": "^2.0.1",
     "prop-types": "^15.6.2",
     "react-hot-loader": "^4.6.3",
+    "react-router-dom": "^4.3.1",
     "style-loader": "^0.23.0",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.1",
@@ -28,6 +29,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "muslimah": "webpack-dev-server --mode production",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "repository": {
