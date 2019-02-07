@@ -4,7 +4,7 @@ const webpack = require('webpack')
 module.exports = {
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, "dist/"),
+        path: path.resolve(__dirname, "build/"),
         publicPath: "/",
         filename: "bundle.js"
     },
@@ -26,7 +26,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "build/"),
         port: 3000,
-        publicPath: "localhost:3000/dist/",
+        publicPath: "localhost:3000/build/",
         hotOnly: true,
         historyApiFallback: true
     },
