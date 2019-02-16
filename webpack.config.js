@@ -2,11 +2,12 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/App.js',
+    mode: 'production',
     output: {
         path: path.resolve(__dirname, "build/"),
-        publicPath: "/",
-        filename: "bundle.js"
+        filename: "bundled.js",
+        publicPath: "/"
     },
     module: {
         rules: [
@@ -21,13 +22,12 @@ module.exports = {
             }
         ] 
     },
-    mode: "production",
     resolve: {extensions: ["*",".js",".jsx"]},
     devServer: {
         contentBase: path.join(__dirname, "build/"),
         port: 3000,
-        publicPath: "localhost:3000/build/",
         hotOnly: true,
+        publicPath: "http://localhost:3000/",
         historyApiFallback: true
     },
     performance: {
