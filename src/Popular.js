@@ -37,7 +37,7 @@ function RepoGrid(props) {
                <li key={repo.name} className="container slide-top">
                   <div className="header-bar">
                      <div className="rank-number">#{index + 1}</div>
-                     <a className="repo-name" href={repo.html_url}>{repo.name}</a>
+                     <a className="repo-name inactive" href={repo.html_url}>{repo.name}</a>
                   </div>
                
                   <ul className="space-list-items">
