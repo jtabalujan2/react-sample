@@ -4,14 +4,14 @@ import {Link, NavLink} from 'react-router-dom'
 
 function Nav() {
     return (
-        <ul className='nav' >
+        <ul activeClassName='nav' >
             <li>
-                <NavLink exact activeClassName="active" to='/'>
+                <NavLink exact activeClassName="active" className="navbar" to='/'>
                     Popular
                 </NavLink>
             </li>
             <li>
-                <NavLink activeClassName="active" to='/battle'>
+                <NavLink activeClassName="active" className="navbar" to='/battle'>
                     Battle
                 </NavLink>
             </li>

@@ -1,8 +1,9 @@
 import React, {Component} from "react"
+import ReactDOM from "react-dom"
 import "./App.css"
 import {hot} from "react-hot-loader"
 import PropTypes from "prop-types"
-import { Route, Switch} from "react-router-dom";
+import { Route, Switch, BrowserRouter} from "react-router-dom";
 
 import Popular from './Popular'
 import Nav from './nav'
@@ -33,3 +34,8 @@ class App extends Component {
 
 
 export default App
+
+ReactDOM.render(<BrowserRouter>
+                    <App />
+                </BrowserRouter>, document.getElementById("root")
+)
