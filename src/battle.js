@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 function PlayerProfile(props) {
+
 return(
   
   //Container
@@ -9,13 +10,16 @@ return(
   //Username
   //Reset button
   <div className="column">
-      <h2 className="label">{props.id}</h2> 
+      <h2 className="label">{props.label}</h2> 
       <img
       className="avatar" 
       src={props.avatar} 
       alt={'Profile picture of ' + props.username}
       />
       <h2>{'@' + props.username}</h2>
+      <button onClick={props.onReset.bind(null, props.id)}>
+        Reset
+      </button>
   </div>
 )
 }
@@ -30,6 +34,7 @@ constructor(props){
 
   this.handleChange = this.handleChange.bind(this)
   this.handleSubmit = this.handleSubmit.bind(this)
+  
 }
 
 //uses helper function to manage state so the value of the input field is based on the state
@@ -93,6 +98,7 @@ constructor(props) {
   }
 
   this.handleSubmit = this.handleSubmit.bind(this)
+  this.handleReset = this.handleReset.bind(this)
 }
 
 handleSubmit(id, username) {
@@ -102,6 +108,16 @@ handleSubmit(id, username) {
       newState[id+'Name'] = username
       newState[id+'Image']= 'https://github.com/' + username + '.png?size=200'
       return newState
+  })
+}
+
+handleReset(id) {
+  this.setState(() => {
+    let newState = {}
+
+    newState[id+'Name'] = '';
+    newState[id+"Image"] = null;
+    return newState
   })
 }
 
@@ -137,15 +153,20 @@ render() {
               {playerOneImage !== null && 
               <PlayerProfile 
               avatar={playerOneImage}
-              id="Player One"
-              username={playerOneName} />
+              label="Player One"
+              id="playerOne"
+              username={playerOneName}
+              onReset={this.handleReset} />
               }
 
               {playerTwoImage !== null && 
               <PlayerProfile 
               avatar={playerTwoImage}
-              id="Player Two"
-              username={playerTwoName} />
+              label="Player Two"
+              id="playerTwo"
+              username={playerTwoName}
+              onReset={this.handleReset}
+               />
               } 
 
           </div>
