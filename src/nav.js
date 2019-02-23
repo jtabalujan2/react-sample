@@ -4,9 +4,9 @@ import {Link, NavLink} from 'react-router-dom'
 
 function Nav() {
     return (
-        <ul activeClassName='navbar' >
+        <ul activeClassName='nav' >
             <li>
-                <NavLink exact activeClassName="active"to='/'>
+                <NavLink exact activeClassName="active" className="navbar" to='/'>
                     Popular
                 </NavLink>
             </li>
