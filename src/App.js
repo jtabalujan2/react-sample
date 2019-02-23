@@ -1,13 +1,12 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import "./App.css"
-import {hot} from "react-hot-loader"
-import PropTypes from "prop-types"
 import { Route, Switch, BrowserRouter} from "react-router-dom";
 
 import Popular from './Popular'
 import Nav from './nav'
 import Battle from './Battle'
+import Result from './result'
 
 
 //parent component that will contain objects to reference by children components
@@ -19,6 +18,7 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={Popular}/>
                     <Route exact path="/battle" component={(Battle)}/>
+                    <Route path="/battle/results" component={Result}/>
                     <Route render={() => {
                         return (
                             <h1>404: Not Found</h1>

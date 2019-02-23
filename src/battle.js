@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
 function PlayerProfile(props) {
 
@@ -129,6 +130,8 @@ render() {
   let playerTwoName = this.state.playerTwoName
   let playerOneImage = this.state.playerOneImage
   let playerTwoImage = this.state.playerTwoImage
+  //React router 
+  let match = this.props.match
 
   return(
       <React.Fragment>
@@ -169,7 +172,19 @@ render() {
                />
               } 
 
+
           </div>
+
+          {playerOneImage !== null && playerTwoImage !== null && 
+                <Link className="button" 
+                  to={{                 
+                  pathname: match.url + '/results',
+                  search: '?playerOneName=' + playerOneName + '?playerTwoName=' + playerTwoName
+                  }}>
+                  Battle
+                </Link>
+              } 
+
       </React.Fragment> 
   )
 }
